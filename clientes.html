@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+
+    <style>
+
+        body{
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container{
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .cards{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card{
+            width: 280px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card h2{
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .card p{
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .botoes{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .excluir{
+            margin-top: 5px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .voltar{
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #6f02fd;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Clientes Cadastrados</h1>
+
+    <div class="cards" id="cards"></div>
+
+    <a href="index.html" class="voltar">
+        Voltar para Cadastro
+    </a>
+
+</div>
+
+<script src="clientes.js"></script>
+
+</body>
+</html>

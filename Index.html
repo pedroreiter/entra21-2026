@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        body {
+            background-color: #883deb;
+            font-family: arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            margin-bottom: 14px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .opcoes{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .botoes{
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input {
+           padding: 10px;
+           margin: 5px;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+        }
+
+        button {
+          padding: 10px 15px;
+          background-color: #6f02fd;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+        button:hover {
+          background-color: #6f02fd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cadastro de Clientes</h1>
+  <div class="opcoes">
+    <input type="text" id="nome" placeholder="Nome">
+    <input type="email" id="email" placeholder="Email">
+    <input type="text" id="telefone" placeholder="Telefone">
+    <input type="text" id="cpf" placeholder="CPF">
+  </div>
+
+  <div class="botoes">
+    <button id="cadastrar">Cadastrar</button>
+    <button id="limpar">Limpar</button>
+    <a href="clientes.html">
+        <button>Ver Clientes</button>
+    </a>
+  </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
