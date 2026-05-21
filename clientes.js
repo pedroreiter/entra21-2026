@@ -28,6 +28,14 @@ function mostrarClientes(){
                     <strong>CPF:</strong><br>
                     ${pessoa.cpf}
                 </p>
+
+                    <button
+                        class="visualizar"
+                        onclick="visualizar(${index})"
+                    >
+                        Visualizar
+                    </button>
+
                     <button 
                         class="excluir"
                         onclick="excluir(${index})"
@@ -38,6 +46,24 @@ function mostrarClientes(){
             </div>
         `;
     });
+}
+
+function visualizar(index){
+
+    const pessoa = pessoas[index];
+
+    alert(`
+        Nome: ${pessoa.nome}
+        Email: ${pessoa.email}
+        Telefone: ${pessoa.telefone}
+        CPF: ${pessoa.cpf}
+        CEP: ${pessoa.cep}
+        Rua: ${pessoa.rua}
+        Bairro: ${pessoa.bairro}
+        Cidade: ${pessoa.cidade}
+        Estado: ${pessoa.estado}
+        DDD: ${pessoa.ddd}
+    `);
 }
 
 function excluir(index){
