@@ -54,6 +54,16 @@
             margin-top: 20px;
         }
 
+        .visualizar{
+            margin-top: 5px;
+            background-color: #0051ff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         .excluir{
             margin-top: 5px;
             background-color: #e74c3c;
@@ -68,8 +78,11 @@
             display: inline-block;
             margin-top: 30px;
             text-decoration: none;
-            color: #6f02fd;
-            font-weight: bold;
+            background-color: #6f02fd;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            
         }
 
     </style>
@@ -78,16 +91,13 @@
 <body>
 
 <div class="container">
-
     <h1>Clientes Cadastrados</h1>
 
     <div class="cards" id="cards"></div>
-
     <a href="index.html" class="voltar">
         Voltar para Cadastro
     </a>
-
-</div>
+    </div>
 
 <script src="clientes.js"></script>
 
