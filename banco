@@ -1,0 +1,129 @@
+create database atividade;
+use atividade;
+
+create table produtos (
+id_produto int auto_increment primary key,
+nome varchar(100), 
+preco decimal (10,2),
+estoque int );
+
+rename table loja to produtos;
+
+create table pedido (
+id_pedido int auto_increment primary key, 
+data_pedido date,
+nome_cliente varchar(100) );
+
+create table item_pedido (
+id_item int auto_increment primary key,
+id_pedido int, 
+id_produto int, 
+quantidade int, 
+valor_unitario decimal(10,2),
+
+foreign key (id_pedido) references pedido(id_pedido),
+foreign key (id_produto) references produtos(id_produto)
+);
+insert into produtos (nome, preco, estoque)
+values ('jeans preto', 249.99, 6);
+
+insert into produtos (nome, preco, estoque)
+values ('jeans azul', 249.99, 6);
+
+insert into produtos (nome, preco, estoque)
+values ('camiseta vermelha', 99.99, 5);
+
+insert into produtos (nome, preco, estoque)
+values ('camiseta cinza', 99.99, 5);
+
+insert into produtos (nome, preco, estoque)
+values ('camiseta preta', 99.99, 5);
+
+insert into pedido (data_pedido, nome_cliente)
+values ('2026-06-09', 'claudia');
+
+insert into pedido (data_pedido, nome_cliente)
+values ('2026-06-07', 'joao vitor');
+
+insert into pedido (data_pedido, nome_cliente)
+values ('2026-06-10', 'lucas');
+
+insert into item_pedido (id_pedido, id_produto, quantidade, valor_unitario)
+values (1, 1, 1, 249.99);
+
+insert into item_pedido (id_pedido, id_produto, quantidade, valor_unitario)
+values (2, 2, 1, 249.99);
+
+insert into item_pedido (id_pedido, id_produto, quantidade, valor_unitario)
+values (3, 3, 2, 99.99);
+
+select*from produtos;
+select*from pedido;
+select*from item_pedido;
+
+select*from produtos
+where estoque > 6;
+
+select*from produtos
+order by preco;
+
+select*from produtos
+where id_produto = 1;
+
+select ip.id_pedido, p.nome, ip.quantidade, ip.valor_unitario
+from item_pedido ip
+inner join produtos p on ip.id_produto = p.id_produto
+where ip.id_pedido = 2;
+
+update produtos 
+set preco = 259.99
+where id_produto = 1;
+
+update produtos
+set estoque = 9
+where id_produto = 2;
+
+update produtos
+set nome = 'jeans azul escuro'
+where id_produto = 1;
+
+update pedido 
+set nome_cliente = 'claudia reiter'
+where id_pedido = 1;
+
+create table produtos (
+id_produto int auto_increment primary key,
+nome varchar(100), 
+preco decimal (10,2),
+estoque int );
+
+rename table loja to produtos;
+
+create table pedido (
+id_pedido int auto_increment primary key, 
+data_pedido date,
+nome_cliente varchar(100) );
+
+create table item_pedido (
+id_item int auto_increment primary key,
+id_pedido int, 
+id_produto int, 
+quantidade int, 
+valor_unitario decimal(10,2) );
+
+select
+pr.nome as 'Produto',
+pe.id_pedido as 'Pedido',
+pe.nome_cliente as 'Cliente',
+pe.data_pedido as 'Data',
+ip.quantidade as 'Qtd',
+ip.valor_unitario as 'Valor Unit.',
+(ip.quantidade * ip.valor_unitario) as 'Subtotal'
+from item_pedido ip
+inner join produtos pr on ip.id_produto = pr.id_produto
+inner join pedido pe on ip.id_pedido = pe.id_pedido
+where pe.id_pedido = 2;
+
+update item_pedido 
+set quantidade = 3
+where id_item = 2;
