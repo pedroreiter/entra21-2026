@@ -1,3 +1,5 @@
+/* BANCO DE DADOS*/
+
 create database atividade;
 use atividade;
 
@@ -128,7 +130,9 @@ update item_pedido
 set quantidade = 3
 where id_item = 2;
 
-/* STORED PRODURES  | 11/06/2026 */
+
+/* STORED PROCEDURES */
+
 
 use atividade;
 
@@ -239,9 +243,12 @@ drop procedure AdicionarEstoque;
 
 call AdicionarEstoque('Sapato', 499.99, 3, 1);
 
+
 /* TRIGGER */
 
+
 /* EXEMPLO 1 */
+
 create table clientes(
 id int auto_increment primary key, 
 nome varchar(100),
