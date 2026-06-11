@@ -127,3 +127,182 @@ where pe.id_pedido = 2;
 update item_pedido 
 set quantidade = 3
 where id_item = 2;
+
+/* STORED PRODURES  | 11/06/2026 */
+
+use atividade;
+
+
+delimiter $$
+create procedure ListarProdutos()
+begin 
+  select*from produtos;
+end $$
+delimiter ;
+
+call listarprodutos;
+
+
+delimiter $$
+create procedure CadastrarProdutos(
+in p_nome varchar(100),
+in p_preco decimal(10,2),
+in p_estoque int
+)
+begin 
+  insert into produtos (nome, preco, estoque)
+  values (p_nome, p_preco, p_estoque);
+end $$
+delimiter ;
+
+call CadastrarProdutos ('short jeans', 89.99, 7);
+select * from produtos;
+
+
+delimiter $$
+create procedure TotalProdutos(
+out quantidade int
+)
+begin 
+  select count(*)  into quantidade
+  from produtos;
+end $$
+delimiter ;
+
+call TotalProdutos(@total);
+select @total;
+
+
+delimiter $$
+create procedure VerificarPreco(
+in p_preco decimal(10,2) 
+)
+begin 
+  if p_preco >= 100 then
+     select 'Produto Caro';
+  else 
+	 select 'produto barato';
+  end if;
+  
+end $$
+delimiter ;
+
+call VerificarPreco(100);
+
+
+delimiter $$
+
+create procedure contar()
+begin 
+  declare i int default 1;
+  
+  while i <= 10 do
+    select i; 
+    set i = i + 1;
+  end while;
+end $$
+
+delimiter ;
+
+call contar;
+
+
+delimiter $$
+
+create procedure AdicionarEstoque(
+in p_nome varchar(100),
+in p_preco decimal(10,2),
+in p_estoque int,
+in ip_quantidade int
+)
+begin 
+  declare qtdAtual int;
+  
+  select quantidade
+  into qtdAtual
+  from estoque 
+  where nome = p_nome;
+  
+  if qtdAtual is null then 
+     insert into estoque (nome, preco, estoque, quantidade)
+     values (p_produto, p_preco, p_estoque, ip_quantidade);
+  else 
+     update estoque 
+     set  quantidade = quantidade + p_quantidade
+     where nome = p_nome;
+  end if;
+end $$
+
+delimiter ;
+
+drop procedure AdicionarEstoque;
+
+call AdicionarEstoque('Sapato', 499.99, 3, 1);
+
+/* TRIGGER */
+
+/* EXEMPLO 1 */
+create table clientes(
+id int auto_increment primary key, 
+nome varchar(100),
+email varchar(150) );
+
+create table log_clientes(
+id int auto_increment primary key,
+mensagem varchar(250), 
+data_evento datetime );
+
+delimiter $$
+create trigger trg_cliente_insert
+after insert on clientes 
+for each row 
+begin 
+  insert into  log_clientes (mensagem, data_evento) 
+  values (
+    concat ('Nome: ', new.nome),
+	now() 
+);
+
+end $$
+delimiter ;
+
+drop trigger trg_cliente_insert;
+
+insert into clientes( nome, email)
+values('Pedro', 'pedrocunha@gmail.com');
+
+select * from log_clientes;
+
+/* EXEMPLO 2 */
+
+create table produtos2 ( 
+id int auto_increment primary key,
+produto_id int,
+preco decimal(10,2)
+);
+
+create table historico_preco(
+id int auto_increment primary key,
+produto_id int,
+preco_antigo decimal(10,2),
+preco_novo decimal(10,2),
+data_alteracao datetime
+);
+
+delimiter $$
+create trigger trg_cliente_update 
+after update on produtos2
+for each row 
+begin 
+  insert into historico_preco (produto_id, preco_antigo, preco_novo, data_alteracao) 
+  values (old.id, old.preco, new.preco, now() );
+
+end $$
+delimiter ;
+
+update produtos2 
+set preco = 120.00
+where id = 1;
+
+select * from produtos;
+
