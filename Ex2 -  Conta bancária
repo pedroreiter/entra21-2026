@@ -1,0 +1,61 @@
+
+public class ContaBancaria {
+	private int numero;
+	private String titular; 
+	private double saldo;
+	
+	public ContaBancaria(int numero, String titular) {
+		this.numero = numero;
+		this.titular = titular;
+		this.saldo = 0;
+	}
+	
+	public void depositar(double valor) {
+		if ( valor > 0) {
+			saldo += valor;
+			System.out.println("Depósito de R$ " + valor + "realizado. ");
+			
+		}
+	}
+	
+	public void sacar(double valor) {
+		if (valor <= saldo) {
+			saldo -= valor;
+			System.out.println("Saque de R$ " + valor + " realizado. ");
+		} else {
+			System.out.println("Saldo insuficiente. ");
+		}
+	}
+	
+	public double consultarSaldo() {
+		return saldo;
+	}
+	
+	public void exibirDados() {
+		System.out.println("\n===Dados da conta ===");
+		System.out.println("Número " + numero);
+		System.out.println("Titular " + titular);
+		System.out.println("Saldo " + saldo); 
+		
+	}
+	
+  public static void main(String[] args) {
+		
+		ContaBancaria dinheiro = new ContaBancaria(123, "Pedro");
+		
+		dinheiro.depositar(1000);
+		dinheiro.sacar(300);
+		dinheiro.sacar(900);
+		dinheiro.exibirDados();
+		
+	}
+}
+
+
+
+
+
+
+
+
+
