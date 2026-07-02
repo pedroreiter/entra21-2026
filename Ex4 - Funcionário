@@ -1,0 +1,42 @@
+
+public class Funcionario {
+	private String nome;
+	private int salario;
+	
+	public void Cadastrar(String nome, int salario) {
+		this.nome = nome;
+		this.salario = salario;
+	}
+	
+	public void aumentarSalario(int percentual) {
+		salario = salario + (salario * percentual / 100);
+	}
+	
+	public int calcularSalarioAnual() {
+		return salario * 12;
+	}
+	
+	public void exibirDados ( int salarioAntigo) {
+		System.out.println("Nome: " + nome);
+		System.out.println("Salario antigo: " + salarioAntigo);
+		System.out.println("Salario novo: " + salario);
+		System.out.println("Salario anual: " + calcularSalarioAnual());
+	}
+	
+	public int getSalario() {
+		return salario;
+	}
+	
+	public static void main(String[] args) {
+
+        Funcionario funcionario = new Funcionario();
+
+        funcionario.Cadastrar("Pedro", 1000);
+
+        int salarioAntigo = 1000;
+
+        funcionario.aumentarSalario(15);
+
+        funcionario.exibirDados(salarioAntigo);
+    }
+}
