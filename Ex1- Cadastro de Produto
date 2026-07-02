@@ -1,0 +1,53 @@
+
+public class Produtos {
+
+    
+    private String nome;
+    private double preco;
+    private int quantidade;
+
+    
+    public void cadastrar(String nome, double preco, int quantidade) {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
+
+    
+    public void aumentarEstoque(int quantidade) {
+        this.quantidade += quantidade;
+    }
+
+    
+    public void diminuirEstoque(int quantidade) {
+        if (quantidade <= this.quantidade) {
+            this.quantidade -= quantidade;
+        } else {
+            System.out.println("Estoque insuficiente.");
+        }
+    }
+
+    
+    public double calcularValorTotal() {
+        return preco * quantidade;
+    }
+
+    
+    public void exibirDados() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Preço: R$ " + preco);
+        System.out.println("Quantidade: " + quantidade);
+        System.out.println("Valor Total: R$ " + calcularValorTotal());
+    }
+    
+    public static void main(String[] args) {
+        Produtos produto = new Produtos();
+		
+		    produto.cadastrar("Mochila", 199.99, 5);
+		    produto.aumentarEstoque(20);
+		    produto.diminuirEstoque(5);
+		    produto.exibirDados();
+	}
+}
+
+
