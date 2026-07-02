@@ -1,0 +1,48 @@
+public class ArCondicionado {
+   
+    private int temperaturaAtual;
+
+    
+    public ArCondicionado() {
+        temperaturaAtual = 24; 
+    }
+
+   
+    public void aumentarTemperatura() {
+        if (temperaturaAtual < 30) {
+            temperaturaAtual++;
+            System.out.println("Temperatura aumentada para " + temperaturaAtual + "°C");
+        } else {
+            System.out.println("A temperatura máxima é 30°C.");
+        }
+    }
+
+   
+    public void diminuirTemperatura() {
+        if (temperaturaAtual > 16) {
+            temperaturaAtual--;
+            System.out.println("Temperatura diminuída para " + temperaturaAtual + "°C");
+        } else {
+            System.out.println("A temperatura mínima é 16°C.");
+        }
+    }
+
+    
+    public void exibirTemperatura() {
+        System.out.println("Temperatura atual: " + temperaturaAtual + "°C");
+    }
+
+
+    public static void main(String[] args) {
+        ArCondicionado ar = new ArCondicionado();
+
+        ar.exibirTemperatura();
+
+        ar.aumentarTemperatura();
+        ar.aumentarTemperatura();
+        ar.exibirTemperatura();
+
+        ar.diminuirTemperatura();
+        ar.exibirTemperatura();
+    }
+}
